@@ -1,3 +1,41 @@
-.App {
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.App{
+  background-color: #f3f3f3;
+  min-height: 100vh;
+}
+
+header{
+  width: 100%;
+  background-color: rgb(141, 168, 248);
+  padding: 10px 20px;
+}
+header h1{
+  color: rgba(0,0,0,.8);
+  font-weight: 400;
   text-align: center;
 }
+
+.link-container{
+  width:  100%;
+  padding: 5px 20px;
+  border: 1px solid rgba(0,0,0,.1);
+    
+}
+.link-container a{
+  text-decoration: none;
+  width: 100%;
+}
+.link-container a h2{
+  color: rgba(0,0,0,.8);
+  font-size: 1.5em;
+}
+.link-container a p{
+  color: rgba(0,0,0,.6);
+  font-size: 1em;
+}
+
