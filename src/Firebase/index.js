@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from "firebase/auth"
+import {getDatabase} from "firebase/database"
 
 // Import V8
 import firebase from 'firebase/compat/app';
@@ -28,5 +29,6 @@ firebase.initializeApp(firebaseConfig)
 
 export const auth = getAuth(app);
 export const firestore = getFirestore(app);
+export const database = getDatabase(app)
 export const storage = firebase.storage()
 export const storageEvent = firebase.storage.TaskEvent.STATE_CHANGED
