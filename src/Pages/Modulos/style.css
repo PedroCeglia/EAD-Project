@@ -1,0 +1,62 @@
+/* Modulo Main */
+.modulo-main{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    background-color: rgba(200,200,200,.8);
+    border: 5px solid white;
+}
+::-webkit-scrollbar-thumb{
+    background-color: dodgerblue;
+    border-radius: 50px;
+    border: 2px solid #fff;
+
+}
+
+/* Modulos Aulas */
+.modulos{
+    width: 35vw;
+    min-width: 280px;
+    background-color: rgba(0,0,0,.3);
+    height: 100vh;
+    overflow-y: auto;
+}
+.modulos::-webkit-scrollbar{
+    width: 10px;
+    background-color: rgba(200,200,200,.8);
+    border: 5px solid white;
+}
+.modulos::-webkit-scrollbar-thumb{
+    background-color: dodgerblue;
+    border-radius: 50px;
+    border: 2px solid #fff;
+
+}
+
+.modulos .link-container{
+    margin: 10px auto;
+    background-color: rgba(255,255,255,.8);
+    border-radius: 10px;
+    width: calc(30vw + 10px);
+    min-width: 250px;
+}
+.modulos .link-container button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.modulos .link-container img{
+    width: 50px;
+}
+.modulos .link-container h2{
+    font-size: 1em;
+    margin-left: 20px;
+}

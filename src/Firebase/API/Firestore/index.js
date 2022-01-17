@@ -10,7 +10,7 @@ export function getCursos(setCursos){
         snapshot => {
             let listCurso = []
             snapshot.forEach(item => {
-                listCurso.push(item)
+                listCurso.push(item.data())
             })
             setCursos(listCurso)
     })

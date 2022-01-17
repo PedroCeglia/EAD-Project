@@ -2,45 +2,66 @@ import React, {useState, useEffect} from 'react'
 import './style.css'
 
 // Import React Router Dom
-import { Link } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
 // Import React Router
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 
-// Import Firestore API
-import { getModulos } from '../../Firebase/API/Firestore'
+// Import Youtube API
+import {apiYoutube} from '../../Axios/YoutubeAPI'
 
-export default function Modulos(){
+
+export default function Modulos(props){
     
     const pathName = useLocation().pathname
     const cursoId = pathName.split('/')[1]
     
-    const [modulos, setModulos] = useState([])
+    const [curso, setCurso] = useState([])
     useEffect(()=>{
         if(cursoId != null){
-            getModulos(cursoId, setModulos)
+            apiYoutube.get('/playlistItems',{
+                params:{
+                    playlistId: cursoId
+                }
+            }).then((result)=>{
+                 setCurso(result.data.items)
+            })
         }
     },[])
+
+    const navigate = useNavigate()
+
+    function openVideo(item, url, key){
+        props.setAula(item)
+        navigate(url)
+    }
     
     return(
-        <div>
-            <header>
-                <h1>Escolha seu Modulo</h1>
-            </header>
-            
-            {
-                modulos.map((item, key) => {
-                    const url = pathName + `/${item.id}`
-                    return(
-                        <div className='link-container' key={key}>
-                            <Link to={url} >
-                                <h2>{item.data().name}</h2>
-                                <p>{item.data().descricao}</p>
-                            </Link>
-                        </div>
-                    )
-                })
-            }
+        <div className='modulo-main'>
+            <div className='modulos'>
+                <header>
+                    <h1>Escolha seu Modulo</h1>
+                </header>
+                
+                {
+                    curso.map((item, key) => {
+                        const url = '/' + cursoId + `/${item.snippet.resourceId.videoId}`
+                        return(
+                            <div className='link-container' key={key}>
+                                <button onClick={()=>{openVideo(item, url)}} >
+                                    <img src={item.snippet.thumbnails.default.url} alt='Video Aula Thumbnail'/>
+                                    <div>
+                                        <h2>{item.snippet.title}</h2>
+                                        <p>{item.snippet.title.description}</p>
+                                    </div>
+                                </button>
+                            </div>
+                        )
+                    })
+                }
+            </div>   
+            <Outlet/>         
         </div>
+
     )
 }
